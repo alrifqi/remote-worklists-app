@@ -36,4 +36,7 @@ class WorkSerializer(serializers.ModelSerializer):
     source = SourceSerializer(
 
     )
+    class Meta:
+        model = Work
+        fields = '__all__'
 # router = routers.DefaultRouter()

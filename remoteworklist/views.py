@@ -9,7 +9,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.authtoken.models import Token
 
 from Fetcher.models import Company, Work, Source
-from .serializers import UserSerializer, CompanySerializer, SourceSerializer
+from .serializers import UserSerializer, CompanySerializer, SourceSerializer, WorkSerializer
 
 # Create your views here.
 class SignUp(generics.CreateAPIView):
@@ -32,4 +32,12 @@ class SourceApi(APIView):
     def get(self):
         queryset = Source.objects.all()
         serializer = SourceSerializer(queryset, many=True)
+        return Response(JSONRenderer().render(serializer.data))
+
+class WorkApi(APIView):
+    permission_classes =  ((IsAuthenticated, ))
+
+    def get(self):
+        queryset = Work.objects.all()
+        serializer = WorkSerializer(queryset)
         return Response(JSONRenderer().render(serializer.data))

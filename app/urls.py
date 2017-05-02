@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from remoteworklist.views import SignUp, CompanyApi
+from remoteworklist.views import SignUp, CompanyApi, WorkApi
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 
@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^auth/get-token', obtain_jwt_token),
     url(r'^auth/refresh-token', refresh_jwt_token),
     url(r'^api/company', CompanyApi.as_view(), name="api_company"),
+    url(r'api/work', WorkApi.as_view(), name="api_work"),
 ]
